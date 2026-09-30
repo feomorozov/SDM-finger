@@ -28,6 +28,8 @@ const runTitle = document.querySelector("#run-title");
 const runMessage = document.querySelector("#run-message");
 const progressFill = document.querySelector("#progress-fill");
 const progressLabel = document.querySelector("#progress-label");
+const resultPreview = document.querySelector("#result-preview");
+const resultImage = document.querySelector("#result-image");
 const resultActions = document.querySelector("#result-actions");
 const downloadButton = document.querySelector("#download-button");
 const anotherButton = document.querySelector("#another-button");
@@ -230,6 +232,8 @@ function setRunningState() {
   runMessage.textContent = "Preparing the video…";
   progressFill.style.width = "0%";
   progressLabel.textContent = "0%";
+  resultPreview.hidden = true;
+  resultImage.removeAttribute("src");
   resultActions.hidden = true;
 }
 
@@ -264,6 +268,8 @@ function showComplete(job) {
   runMessage.textContent = `${job.successful_frames} frames tracked · ${job.failed_frames} failures`;
   progressFill.style.width = "100%";
   progressLabel.textContent = "100%";
+  resultImage.src = `${job.plot_url}?t=${Date.now()}`;
+  resultPreview.hidden = false;
   downloadButton.href = job.download_url;
   resultActions.hidden = false;
 }
@@ -275,6 +281,8 @@ function showError(message) {
   runMessage.textContent = message;
   progressFill.style.width = "0%";
   progressLabel.textContent = "";
+  resultPreview.hidden = true;
+  resultImage.removeAttribute("src");
   downloadButton.hidden = true;
   resultActions.hidden = false;
 }
@@ -293,6 +301,8 @@ function resetApp() {
   uploadStatus.textContent = "";
   uploadStatus.classList.remove("is-error");
   downloadButton.hidden = false;
+  resultPreview.hidden = true;
+  resultImage.removeAttribute("src");
   resultActions.hidden = true;
   context.clearRect(0, 0, canvas.width, canvas.height);
   showView("upload");

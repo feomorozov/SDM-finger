@@ -19,10 +19,8 @@
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">Soft robotics analysis</p>
-        <h1 id="page-title">Track motion.<br />Export everything.</h1>
-        <p class="hero-copy">
+      <section class="intro" aria-label="About Motion Tracker">
+        <p>
           Upload a trimmed video, draw one box around the moving feature, and receive
           the annotated video, data, plots, and run settings in a single download.
         </p>
@@ -94,6 +92,11 @@
           </div>
           <p id="progress-label" class="progress-label">0%</p>
 
+          <figure id="result-preview" class="result-preview" hidden>
+            <img id="result-image" alt="Generated three-panel trajectory plot" />
+            <figcaption>Generated trajectory figure</figcaption>
+          </figure>
+
           <div id="result-actions" class="result-actions" hidden>
             <a id="download-button" class="primary-button" href="#" download>
               <span>Download results</span>
@@ -102,24 +105,6 @@
             <button id="another-button" class="secondary-button" type="button">Track another video</button>
           </div>
         </div>
-      </section>
-
-      <section class="details" aria-label="Output details">
-        <article>
-          <span>01</span>
-          <h2>One video at a time.</h2>
-          <p>Trim the clip before uploading. Every frame in the uploaded video is processed.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h2>Frame-aligned data.</h2>
-          <p>The CSV preserves every frame and explicitly marks any tracking failures.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h2>Ready to inspect.</h2>
-          <p>Your ZIP includes the annotated MP4, CSV, three-panel plot, and settings JSON.</p>
-        </article>
       </section>
     </main>
 

@@ -337,6 +337,7 @@ def process_tracking_job(job_id: str, video_record: dict[str, Any], bbox: tuple[
             successful_frames=successful_frames,
             failed_frames=failed_frames,
             zip_path=str(zip_output),
+            plot_path=str(plot_output),
             download_name=zip_output.name,
         )
     except Exception as error:
@@ -477,9 +478,25 @@ def job_status(job_id: str) -> dict[str, Any]:
     if not job:
         raise HTTPException(status_code=404, detail="Tracking job not found.")
     job.pop("zip_path", None)
+    job.pop("plot_path", None)
     if job["status"] == "complete":
         job["download_url"] = f"/api/jobs/{job_id}/download"
+        job["plot_url"] = f"/api/jobs/{job_id}/plot"
     return job
+
+
+@app.get("/api/jobs/{job_id}/plot")
+def view_result_plot(job_id: str) -> FileResponse:
+    with STATE_LOCK:
+        job = dict(JOBS.get(job_id, {}))
+    if not job:
+        raise HTTPException(status_code=404, detail="Tracking job not found.")
+    if job.get("status") != "complete":
+        raise HTTPException(status_code=409, detail="The trajectory figure is not ready yet.")
+    plot_path = Path(job["plot_path"])
+    if not plot_path.is_file():
+        raise HTTPException(status_code=404, detail="The trajectory figure has expired.")
+    return FileResponse(plot_path, media_type="image/png", headers={"Cache-Control": "no-store"})
 
 
 @app.get("/api/jobs/{job_id}/download")

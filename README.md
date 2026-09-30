@@ -2,7 +2,8 @@
 
 Motion Tracker is a focused web app for extracting the pixel trajectory of one
 feature in a trimmed actuator video. The user uploads a clip, draws a box on its
-first frame, runs OpenCV CSRT tracking, and downloads all results as a ZIP.
+first frame, runs OpenCV CSRT tracking, previews the generated three-panel
+figure, and downloads all results as a ZIP.
 
 ## Launch locally
 

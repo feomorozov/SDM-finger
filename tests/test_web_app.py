@@ -69,6 +69,11 @@ def test_complete_tracking_workflow(tmp_path: Path) -> None:
         assert status["progress"] == 100
         assert status["successful_frames"] > 0
 
+        plot = client.get(status["plot_url"])
+        assert plot.status_code == 200
+        assert plot.headers["content-type"] == "image/png"
+        assert len(plot.content) > 1_000
+
         download = client.get(status["download_url"])
         assert download.status_code == 200
         with zipfile.ZipFile(BytesIO(download.content)) as archive:
