@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: soft-robotics-motion-tracker
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: MAX_UPLOAD_MB
+        value: "250"
+      - key: RETENTION_HOURS
+        value: "6"

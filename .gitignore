@@ -1,0 +1,11 @@
+.venv/
+.matplotlib/
+.matplotlib-web/
+tracking_outputs/
+runtime_data/
+__pycache__/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.m4v

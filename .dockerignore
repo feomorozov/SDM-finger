@@ -1,0 +1,15 @@
+.git
+.venv
+.matplotlib*
+__pycache__
+runtime_data
+tracking_outputs
+tests
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.m4v
+*.ipynb
+*.png
+*.cmd
