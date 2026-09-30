@@ -367,6 +367,11 @@ def index() -> FileResponse:
     return FileResponse(WEB_DIR / "index.html")
 
 
+@app.get("/illinoisBioE.png", include_in_schema=False)
+def illinois_bioe_logo() -> FileResponse:
+    return FileResponse(BASE_DIR / "illinoisBioE.png", media_type="image/png")
+
+
 @app.get("/healthz")
 def health() -> dict[str, str]:
     return {"status": "ok"}

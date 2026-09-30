@@ -9,3 +9,4 @@ __pycache__/
 *.avi
 *.mkv
 *.m4v
+!illinoisBioE.png

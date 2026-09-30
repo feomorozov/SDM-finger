@@ -11,6 +11,7 @@ COPY requirements-web.txt ./
 RUN pip install --no-cache-dir -r requirements-web.txt
 
 COPY app.py ./
+COPY illinoisBioE.png ./
 COPY web ./web
 
 EXPOSE 8000

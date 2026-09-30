@@ -12,4 +12,5 @@ tests
 *.m4v
 *.ipynb
 *.png
+!illinoisBioE.png
 *.cmd

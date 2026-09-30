@@ -37,6 +37,7 @@ def test_complete_tracking_workflow(tmp_path: Path) -> None:
     with TestClient(tracker_app.app) as client:
         assert client.get("/healthz").json() == {"status": "ok"}
         assert "Motion Tracker" in client.get("/").text
+        assert client.get("/illinoisBioE.png").status_code == 200
 
         with video_path.open("rb") as video_file:
             upload = client.post(
